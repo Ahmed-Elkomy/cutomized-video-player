@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:video_player/video_player.dart';
+import 'package:videoplayerdemo/presentation/my_flutter_app_icons.dart';
 import 'package:videoplayerdemo/video_player/constants.dart';
 import 'package:videoplayerdemo/video_player/progress_colors.dart';
 import 'package:videoplayerdemo/video_player/utils.dart';
@@ -367,18 +368,13 @@ class _CupertinoControlsState extends State<CupertinoControls> {
         margin: EdgeInsets.only(
           right: 8.0,
         ),
-        child: Transform(
-          alignment: Alignment.center,
-          transform: Matrix4.skewY(0.0)
-            ..rotateX(math.pi)
-            ..rotateZ(math.pi),
-          child: Icon(
+        child: Icon(
+          MyFlutterApp.forward_10,
 //          OpenIconicIcons.reload,
-            Icons.replay_10,
+//            Icons.replay_10,
 //          CupertinoIcons.refresh_thick,
-            color: iconColor,
-            size: 25.0,
-          ),
+          color: iconColor,
+          size: 25.0,
         ),
       ),
     );
