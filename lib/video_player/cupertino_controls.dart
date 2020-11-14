@@ -15,7 +15,9 @@ import 'cupertino_progress_bar.dart';
 class CupertinoControls extends StatefulWidget {
   final VideoPlayerController controller;
   final bool isFullScreen;
+
   CupertinoControls({this.controller, this.isFullScreen});
+
   @override
   _CupertinoControlsState createState() => _CupertinoControlsState();
 }
@@ -266,7 +268,7 @@ class _CupertinoControlsState extends State<CupertinoControls> {
             sigmaY: 10.0,
           ),
           child: Container(
-            height: 3 * barHeight,
+            height: 3.4 * barHeight,
             color: backgroundColor,
             child: Column(
               children: <Widget>[
@@ -284,12 +286,12 @@ class _CupertinoControlsState extends State<CupertinoControls> {
                 Container(),
                 Expanded(
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       _buildSkipBack(iconColor, barHeight),
                       _buildPlayPause(widget.controller, iconColor, barHeight),
                       _buildSkipForward(iconColor, barHeight),
+                      _speed(widget.controller)
                     ],
                   ),
                 ),
@@ -526,4 +528,35 @@ class _CupertinoControlsState extends State<CupertinoControls> {
             .inMilliseconds;
     widget.controller.seekTo(Duration(milliseconds: math.min(skip, end)));
   }
+  static const _examplePlaybackRates = [
+    0.25,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+  ];
+ Container _speed(VideoPlayerController controller) {
+    return Container(
+      child: PopupMenuButton<double>(
+        initialValue: controller.value.playbackSpeed,
+        tooltip: 'Playback speed',
+        onSelected: (speed) {
+          controller.setPlaybackSpeed(speed);
+        },
+        itemBuilder: (context) {
+          return [
+            for (final speed in _examplePlaybackRates)
+              PopupMenuItem(
+                value: speed,
+                child: Text('${speed}x'),
+              )
+          ];
+        },
+        child: Center(child: Container(
+          child: Image.asset("assets/images/speed.jpg",color: Colors.white,),
+        )),
+      ),
+    );
+ }
 }

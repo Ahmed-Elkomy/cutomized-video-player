@@ -6,7 +6,6 @@ import 'package:video_player/video_player.dart';
 import 'package:videoplayerdemo/video_player/constants.dart';
 import 'package:videoplayerdemo/video_player/progress_colors.dart';
 import 'package:videoplayerdemo/video_player/utils.dart';
-
 import 'material_progress_bar.dart';
 
 class MaterialControls extends StatefulWidget {
